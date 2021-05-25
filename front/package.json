@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=dev webpack-dev-server --content-base dist/"
+    "start": "webpack-dev-server --content-base dist/"
   },
   "license": "MIT",
   "devDependencies": {
@@ -22,8 +22,6 @@
     "flow-bin": "^0.64.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^2.30.1",
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",

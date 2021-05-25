@@ -1,8 +1,8 @@
-import express from 'express';
+import express from "express";
 
-import User from '../models/user';
-import { routes } from '../configs';
-import { Crypt, Token } from '../services';
+import User from "../models/user";
+import { routes } from "../configs";
+import { Crypt, Token } from "../services";
 
 const router = express.Router();
 
@@ -12,15 +12,15 @@ router.post(routes.auth.signin, async (req, res) => {
     if (!name || !password) {
       return res.json({
         status: false,
-        message: 'Data is empty'
+        message: "Data is empty",
       });
     }
 
-    const user = await User.findOne({name});
+    const user = await User.findOne({ name });
     if (!user) {
       return res.json({
         status: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -28,19 +28,20 @@ router.post(routes.auth.signin, async (req, res) => {
       password,
       pHash: user.password,
     });
+
     if (!passwordCorrect) {
       return res.json({
         status: false,
-        message: 'Password is incorrect'
+        message: "Password is incorrect",
       });
     }
 
     const token = Token.generate({
       userId: user._id,
-      name
+      name,
     });
-    res.cookie('accessToken', token, {
-      maxAge: 60 * 60 * 10 // 1h
+    res.cookie("accessToken", token, {
+      maxAge: 60 * 60 * 10, // 1h
     });
 
     res.json({
@@ -48,7 +49,7 @@ router.post(routes.auth.signin, async (req, res) => {
       name: user.name,
       token,
     });
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     res.send(err.message).status(500);
   }
@@ -60,7 +61,7 @@ router.post(routes.auth.signup, async (req, res) => {
     if (!name || !password) {
       return res.json({
         status: false,
-        message: 'Data is empty'
+        message: "Data is empty",
       });
     }
 
@@ -72,9 +73,9 @@ router.post(routes.auth.signup, async (req, res) => {
 
     res.json({
       status: true,
-      name: name
+      name: name,
     });
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     res.send(err.message).status(500);
   }
