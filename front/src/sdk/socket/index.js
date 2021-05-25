@@ -3,7 +3,7 @@ import EventEmitter from 'events';
 
 import { events } from './configs';
 
-const url = `http://${process.env.SOCKET_HOST}:${process.env.SOCKET_PORT}`;
+const url = `http://localhost:4000`;
 
 class SocketSDK extends EventEmitter {
   events = events.public;
